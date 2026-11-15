@@ -104,4 +104,4 @@ CropTrack provides a centralized website where users can:
 ---
 
 *CropTrack aims to support informed agricultural selling decisions through accessible local market price information.*# CropTrack
-A web-based local agricultural market price tracker 
+A web-based local agricultural market price tracker .
