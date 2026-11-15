@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CropTrack | Smart Agriculture</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <a href="#" class="brand">
+        <span class="brand-icon">🌱</span>
+        CropTrack<span class="brand-dot">.</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#crops">Explore Crops</a>
+        <a href="#market">Market Prices</a>
+        <a href="#prediction">Price Trends</a>
+        <a href="#submit-price">Add a Price</a>
+    </nav>
+
+    <a href="#search" class="nav-btn">Check Prices ↗</a>
+</header>
+
+<main id="main-content">
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-tag">
+            <span>✦</span> COMMUNITY-POWERED MARKET INSIGHTS
+        </div>
+
+        <h1>
+            Grow Smart.<br>
+            Sell <span>Better.</span>
+        </h1>
+
+        <p>
+            Compare locally reported crop prices, explore nearby markets,
+            and make more informed decisions about when and where to sell.
+        </p>
+
+        <a href="#search" class="hero-btn">
+            Explore Local Prices <span>→</span>
+        </a>
+
+        <div class="hero-note">
+            <span>✓</span> Better information. Smarter selling decisions.
+        </div>
+
+    </div>
+
+    <div class="hero-image">
+        <div class="hero-image-overlay"></div>
+
+        <div class="floating-card">
+            <span class="floating-icon">🌾</span>
+            <div>
+                <strong>Know Your Market</strong>
+                <small>Community-reported prices</small>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- SEARCH SECTION -->
+<section class="search-section" id="search">
+
+    <div class="section-heading">
+        <span class="eyebrow">MARKET PRICE FINDER</span>
+        <h2>What's your crop worth today?</h2>
+        <p>Choose a crop and location to compare today's shop reports.</p>
+    </div>
+
+    
+<div class="search-panel">
+
+    <div class="search-field">
+        <label>🌱 Select Crop</label>
+        <select id="crop">
+            <option value="">Loading crops...</option>
+        </select>
+    </div>
+
+    <div class="search-field">
+        <label>📍 Select Location</label>
+        <select id="location">
+            <option value="">Choose location</option>
+            <option value="Puttur">Puttur</option>
+            <option value="Sullia">Sullia</option>
+        </select>
+    </div>
+
+    <button type="button" onclick="searchPrices()" class="search-btn">
+    <span>Search prices</span><span aria-hidden="true">→</span>
+    </button>
+
+</div>
+
+<p id="message" class="message"></p>
+
+</section>
+
+<div class="live-price-wrap">
+    <div class="live-price-panel" id="live-price-panel">
+        <div class="live-price-header">
+            <span class="eyebrow">TODAY'S MARKET SNAPSHOT</span>
+            <span id="live-price-status" class="live-status" aria-live="polite">Updating…</span>
+        </div>
+
+        <div class="live-price-body">
+            <div>
+                <p class="live-label">Current Market</p>
+                <h3 id="live-price-crop">Rice</h3>
+            </div>
+
+            <div class="live-price-value" id="live-price-value">₹--</div>
+        </div>
+
+        <div class="live-price-meta">
+            <span id="live-price-location">Puttur</span>
+            <span id="live-price-change">Trend: --</span>
+        </div>
+        <p class="live-price-note">
+            Prices update from today's shop reports. Submit a local price below to add one.
+        </p>
+    </div>
+</div>
+
+
+<!-- POPULAR CROPS -->
+<section class="crops-section" id="crops">
+
+    <div class="section-heading">
+        <span class="eyebrow">EXPLORE AGRICULTURE</span>
+        <h2>Explore Popular Crops</h2>
+        <p>Choose a crop to see its local price reports.</p>
+    </div>
+
+    <div class="crop-grid">
+
+        <div class="crop-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Areca_catechu_nuts_at_Kadavoor.jpg/960px-Areca_catechu_nuts_at_Kadavoor.jpg"
+                 alt="Areca nuts growing on a palm" loading="lazy" decoding="async">
+            <div class="crop-info">
+                <h3>Arecanut</h3>
+                <p>Areca nuts</p>
+                <small class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Areca_catechu_nuts_at_Kadavoor.jpg" target="_blank" rel="noopener noreferrer">Photo: Jeevan Jose · CC BY-SA 4.0</a></small>
+                <a class="crop-action" href="#search" data-crop="Arecanut">Check prices <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+
+        <div class="crop-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Coconuts_-_single_and_cracked_open.jpg/960px-Coconuts_-_single_and_cracked_open.jpg"
+                 alt="Whole and cut coconuts" loading="lazy" decoding="async">
+            <div class="crop-info">
+                <h3>Coconut</h3>
+                <p>Whole and fresh coconut</p>
+                <small class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Coconuts_-_single_and_cracked_open.jpg" target="_blank" rel="noopener noreferrer">Photo: Ivar Leidus · CC BY-SA 4.0</a></small>
+                <a class="crop-action" href="#search" data-crop="Coconut">Check prices <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+
+        <div class="crop-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Cocoa_pods_in_Soubr%C3%A9.jpg/960px-Cocoa_pods_in_Soubr%C3%A9.jpg"
+                 alt="Cocoa pods growing on a tree" loading="lazy" decoding="async">
+            <div class="crop-info">
+                <h3>Cocoa</h3>
+                <p>Cocoa pods</p>
+                <small class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Cocoa_pods_in_Soubr%C3%A9.jpg" target="_blank" rel="noopener noreferrer">Photo: Milequem Diarassouba · CC BY-SA 4.0</a></small>
+                <a class="crop-action" href="#search" data-crop="Cocoa">Check prices <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+
+        <div class="crop-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Black_Pepper_%28Piper_nigrum%29_fruits.jpg/960px-Black_Pepper_%28Piper_nigrum%29_fruits.jpg"
+                 alt="Black pepper berries growing on a vine" loading="lazy" decoding="async">
+            <div class="crop-info">
+                <h3>Black Pepper</h3>
+                <p>Pepper berries</p>
+                <small class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Black_Pepper_(Piper_nigrum)_fruits.jpg" target="_blank" rel="noopener noreferrer">Photo: K Hari Krishnan · CC BY-SA 3.0</a></small>
+                <a class="crop-action" href="#search" data-crop="Black Pepper">Check prices <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+
+        <div class="crop-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Mangos_-_single_and_halved.jpg/960px-Mangos_-_single_and_halved.jpg"
+                 alt="Whole and cut mangoes" loading="lazy" decoding="async">
+            <div class="crop-info">
+                <h3>Mango</h3>
+                <p>Fresh mango fruit</p>
+                <small class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Mangos_-_single_and_halved.jpg" target="_blank" rel="noopener noreferrer">Photo: Ivar Leidus · CC BY-SA 4.0</a></small>
+                <a class="crop-action" href="#search" data-crop="Mango">Check prices <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+
+        <div class="crop-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Rice_Grains_.png"
+                 alt="Uncooked rice grains" loading="lazy" decoding="async">
+            <div class="crop-info">
+                <h3>Rice</h3>
+                <p>Rice grains</p>
+                <small class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Rice_Grains_.png" target="_blank" rel="noopener noreferrer">Photo: Hpannu7 · CC BY-SA 4.0</a></small>
+                <a class="crop-action" href="#search" data-crop="Rice">Check prices <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+
+        <div class="crop-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Rubber_Trees_RRIC100_Erumeli_Kerala_Mar22_A7C_01336.jpg/960px-Rubber_Trees_RRIC100_Erumeli_Kerala_Mar22_A7C_01336.jpg"
+                 alt="Rubber trees in a plantation in Kerala" loading="lazy" decoding="async">
+            <div class="crop-info">
+                <h3>Rubber</h3>
+                <p>Rubber tree plantation</p>
+                <small class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Rubber_Trees_RRIC100_Erumeli_Kerala_Mar22_A7C_01336.jpg" target="_blank" rel="noopener noreferrer">Photo: Timothy A. Gonsalves · CC BY-SA 4.0</a></small>
+                <a class="crop-action" href="#search" data-crop="Rubber">Check prices <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+
+        <div class="crop-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Anacardium_occidentale_from_Margarita_island.jpg/960px-Anacardium_occidentale_from_Margarita_island.jpg"
+                 alt="Cashew fruit with its attached nut" loading="lazy" decoding="async">
+            <div class="crop-info">
+                <h3>Cashew</h3>
+                <p>Cashew apple and nut</p>
+                <small class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Anacardium_occidentale_from_Margarita_island.jpg" target="_blank" rel="noopener noreferrer">Photo: Wilfredor · CC0</a></small>
+                <a class="crop-action" href="#search" data-crop="Cashew">Check prices <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+
+        <div class="crop-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Cavendish_banana_from_Maracaibo.jpg/960px-Cavendish_banana_from_Maracaibo.jpg"
+                 alt="Fresh Cavendish bananas" loading="lazy" decoding="async">
+            <div class="crop-info">
+                <h3>Banana</h3>
+                <p>Fresh banana fruit</p>
+                <small class="image-credit"><a href="https://commons.wikimedia.org/wiki/File:Cavendish_banana_from_Maracaibo.jpg" target="_blank" rel="noopener noreferrer">Photo: Wilfredor · CC BY-SA 3.0</a></small>
+                <a class="crop-action" href="#search" data-crop="Banana">Check prices <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SHOP PRICE SUBMISSION -->
+
+<section class="search-section" id="submit-price">
+
+    <div class="section-heading">
+        <span class="eyebrow">LOCAL MARKET CONTRIBUTION</span>
+        <h2>Update Today's Crop Prices</h2>
+        <p>Enter the price collected from a local agricultural shop.</p>
+    </div>
+
+    <div class="search-panel">
+
+        <div class="search-field">
+            <label>Shop Name</label>
+            <input type="text" id="shopName"
+                   placeholder="Enter shop name">
+        </div>
+
+        <div class="search-field">
+            <label>Location</label>
+            <select id="submitLocation">
+                <option value="Puttur">Puttur</option>
+                <option value="Sullia">Sullia</option>
+            </select>
+        </div>
+
+        <div class="search-field">
+            <label>Select Crop</label>
+            <select id="submitCrop">
+                <option value="Arecanut">Arecanut</option>
+                <option value="Coconut">Coconut</option>
+                <option value="Cocoa">Cocoa</option>
+                <option value="Black Pepper">Black Pepper</option>
+                <option value="Mango">Mango</option>
+                <option value="Rice">Rice</option>
+                <option value="Rubber">Rubber</option>
+                <option value="Cashew">Cashew</option>
+                <option value="Banana">Banana</option>
+            </select>
+        </div>
+
+        <div class="search-field">
+            <label>Price per kg (₹)</label>
+            <input type="number" id="shopPrice"
+                   placeholder="Enter price"
+                   min="0.01" step="0.01">
+        </div>
+
+        <div class="search-field">
+            <label>Crop Quality</label>
+            <select id="shopQuality">
+                <option value="Standard">Standard</option>
+                <option value="Premium">Premium</option>
+                <option value="Grade A">Grade A</option>
+            </select>
+        </div>
+
+        <button type="button" class="search-btn" onclick="submitShopPrice()">
+            Submit price <span aria-hidden="true">→</span>
+        </button>
+
+    </div>
+
+    <p id="submitMessage" class="message" aria-live="polite"></p>
+
+</section>
+
+
+
+<!-- MARKET RESULTS -->
+<section class="market-section" id="market">
+
+    <div class="section-heading">
+        <span class="eyebrow">AGRICULTURAL MARKET</span>
+        <h2>Today's reported prices</h2>
+        <p>Compare submitted quotations for your selected crop and location.</p>
+    </div>
+
+    <div id="price-results" class="price-grid" aria-live="polite">
+        <div class="empty-card">
+            <span>🌾</span>
+            <h3>Market prices will appear here</h3>
+            <p>Select a crop and location above to get started.</p>
+        </div>
+    </div>
+
+</section>
+
+
+
+<!-- PRICE TRENDS -->
+<section class="trend-section" id="prediction">
+
+    <div class="trend-content">
+        <span class="eyebrow">MARKET INSIGHTS</span>
+
+        <h2>
+            Read the market.<br>
+            Plan your next move.
+        </h2>
+
+        <p>
+            Use community-reported prices to compare today's local rates
+            and spot how the market changes over time.
+        </p>
+
+        <div class="trend-points">
+            <div><span>01</span> Compare daily average prices</div>
+            <div><span>02</span> Review shop-wise quotations</div>
+            <div><span>03</span> Explore price history</div>
+        </div>
+    </div>
+
+    <div class="trend-visual chart-panel">
+        <div class="chart-heading">
+            <div>
+                <span class="chart-kicker">DAILY AVERAGE PRICE</span>
+                <h3 id="chart-title">Rice · Puttur</h3>
+            </div>
+            <span id="chart-status" class="chart-status" aria-live="polite">Loading…</span>
+        </div>
+
+        <div id="price-chart" class="chart-container" aria-live="polite">
+            <p class="chart-empty">Loading price history…</p>
+        </div>
+
+        <div class="chart-footer">
+            <span class="chart-legend"><span class="chart-legend-dot"></span> Average price per kg</span>
+            <span id="chart-range">Last 30 reporting days</span>
+        </div>
+    </div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-brand">🌱 CropTrack.</div>
+    <p>Empowering farmers with smarter market information.</p>
+    <small>© 2026 CropTrack. All rights reserved.</small>
+</footer>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
